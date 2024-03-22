@@ -9,6 +9,8 @@ public class PixelPlatformer : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    private Texture2D _characterAtlas;
+
     public PixelPlatformer()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -29,7 +31,7 @@ public class PixelPlatformer : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        _characterAtlas = Content.Load<Texture2D>("Assets/Characters");
     }
 
     protected override void Update(GameTime gameTime)
@@ -46,7 +48,9 @@ public class PixelPlatformer : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        _spriteBatch.Begin(SpriteSortMode.BackToFront, samplerState: SamplerState.PointClamp);
+        _spriteBatch.Draw(_characterAtlas, new Vector2(200, 200), Color.White);
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }

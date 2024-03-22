@@ -23,3 +23,5 @@ D:\MonoGame\PlatformerTutorial\obj\Debug\net6.0\refint\PlatformerTutorial.dll
 D:\MonoGame\PlatformerTutorial\obj\Debug\net6.0\PlatformerTutorial.pdb
 D:\MonoGame\PlatformerTutorial\obj\Debug\net6.0\PlatformerTutorial.genruntimeconfig.cache
 D:\MonoGame\PlatformerTutorial\obj\Debug\net6.0\ref\PlatformerTutorial.dll
+D:\MonoGame\PlatformerTutorial\bin\Debug\net6.0\Content\Assets\Characters.xnb
+D:\MonoGame\PlatformerTutorial\obj\Debug\net6.0\PlatformerTutorial.sourcelink.json
