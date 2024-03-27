@@ -1,15 +1,26 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PixelPlatformer.Util;
 
-namespace PlatformerTutorial;
+namespace PixelPlatformer;
 
 public class PixelPlatformer : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    private Texture2D _characterAtlas;
+     private Texture2D _characterAtlas;
+
+    #region player
+   
+    private Rectangle _characterRect; //
+    private Vector2 _playerPosition = new Vector2(200, 200);
+    private Vector2 _playerMagnitude = Vector2.Zero;
+    private float _playerSpeed = 6.0f;
+
+    #endregion
 
     public PixelPlatformer()
     {
@@ -23,6 +34,12 @@ public class PixelPlatformer : Game
         _graphics.PreferredBackBufferWidth = 1280;
         _graphics.PreferredBackBufferHeight = 720;
         _graphics.ApplyChanges();
+
+        Window.AllowUserResizing = false;
+
+        _characterRect = new Rectangle(0,0,24,24); //
+
+        Input.Initialize();
 
         base.Initialize();
     }
@@ -41,6 +58,21 @@ public class PixelPlatformer : Game
 
         // TODO: Add your update logic here
 
+        Input.Update(gameTime);
+
+        //MovePlayer
+        _playerMagnitude = Vector2.Zero;
+
+        if(Input.IsKeyDown(Keys.A)){
+            _playerMagnitude.X = -1;
+        } 
+        
+        if (Input.IsKeyDown(Keys.D)) {
+            _playerMagnitude.X = 1;
+        }
+
+        _playerPosition.X += _playerMagnitude.X * _playerSpeed;
+
         base.Update(gameTime);
     }
 
@@ -49,7 +81,10 @@ public class PixelPlatformer : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin(SpriteSortMode.BackToFront, samplerState: SamplerState.PointClamp);
-        _spriteBatch.Draw(_characterAtlas, new Vector2(200, 200), Color.White);
+        //_spriteBatch.Draw(_characterAtlas, new Vector2(200, 400), Color.White);
+        //_spriteBatch.Draw(_characterAtlas, new Vector2(200, 200), _characterRect, Color.White);
+        //_spriteBatch.Draw(_characterAtlas, new Vector2(200, 400), _characterRect, Color.White, 0f, Vector2.Zero, 2.5f, SpriteEffects.None, 0f);
+        _spriteBatch.Draw(_characterAtlas, _playerPosition, _characterRect, Color.White, 0f, Vector2.Zero, 2.5f, SpriteEffects.None, 0f);
         _spriteBatch.End();
 
         base.Draw(gameTime);

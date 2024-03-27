@@ -1,3 +1,3 @@
 ﻿
-using var game = new PlatformerTutorial.PixelPlatformer();
+using var game = new PixelPlatformer.PixelPlatformer();
 game.Run();
