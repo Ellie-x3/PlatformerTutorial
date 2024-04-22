@@ -11,11 +11,11 @@ public class PixelPlatformer : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-     private Texture2D _characterAtlas;
+    private Texture2D _characterAtlas; 
 
     #region player
    
-    private Rectangle _characterRect; //
+    private Rectangle _characterRect = new Rectangle(0,0,24,24); //
     private Vector2 _playerPosition = new Vector2(200, 200);
     private Vector2 _playerMagnitude = Vector2.Zero;
     private float _playerSpeed = 6.0f;
@@ -36,8 +36,6 @@ public class PixelPlatformer : Game
         _graphics.ApplyChanges();
 
         Window.AllowUserResizing = false;
-
-        _characterRect = new Rectangle(0,0,24,24); //
 
         Input.Initialize();
 
@@ -83,7 +81,6 @@ public class PixelPlatformer : Game
         _spriteBatch.Begin(SpriteSortMode.BackToFront, samplerState: SamplerState.PointClamp);
         //_spriteBatch.Draw(_characterAtlas, new Vector2(200, 400), Color.White);
         //_spriteBatch.Draw(_characterAtlas, new Vector2(200, 200), _characterRect, Color.White);
-        //_spriteBatch.Draw(_characterAtlas, new Vector2(200, 400), _characterRect, Color.White, 0f, Vector2.Zero, 2.5f, SpriteEffects.None, 0f);
         _spriteBatch.Draw(_characterAtlas, _playerPosition, _characterRect, Color.White, 0f, Vector2.Zero, 2.5f, SpriteEffects.None, 0f);
         _spriteBatch.End();
 
